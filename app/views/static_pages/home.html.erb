@@ -1,0 +1,41 @@
+
+  <div class="starter-template">
+    <% if logged_in?%>
+      <h1>Upcoming events</h1>
+      <% @events = Event.all %>
+      <% if @events.count > 0 %>
+        <% @events.each do |event| %>
+                <hr>
+                <h3><%= event.name %></h3>
+                <div class = "event-details">
+                    <p> at <%= event.location %></p>
+                    <p> in <%= event.date %></p>
+                    <p> - <%= User.find(event.creator_id).name %></p>
+                    <ul>
+                        <li><%= link_to "Read More", event_path(event) %></li>
+                    </ul>
+                </div>
+          <% end %>
+          <hr>
+        <% else %>
+          <p> No events </p>
+        <% end %>
+    <% else %>
+      <h1>Welcome!</h1>
+      <hr>
+      <p class = "text-justify">
+          <h3> What can you do here? </h3>
+          <ul>
+            <li>Create events</li>
+            <li>Attend events</li>
+            <li>Search events</li>
+          </ul>
+
+          <h3> New user? </h3>
+          <ul>
+            <li><%= link_to "Join us!", signup_path %></li>
+          </ul>
+        </ul>
+      </p>
+    <% end %>
+  </div>

@@ -1,0 +1,33 @@
+<h1><%= @event.name %></h1>
+<p>๛ <%= @event.description %></p>
+<p>📌  <%= @event.location %></p>
+<p> 📅  <%= @event.date %>, <%= pluralize((@event.date - Date.today).to_i, 'day') %> left</p>
+
+<h1>
+
+Guests List
+
+<% if @event.creator_id == session[:user_id] %>
+    | <%= link_to "Invite Someone", invite_path %>
+<% end %>
+</h1>
+<% if @attendees.count > 0 %>
+    <% @attendees.each do |attendee| %>
+        <h2 class = "guests" ><%= attendee.name %></h2>
+        <p class = "invitationStatus"><%= @attendments.find_by(user_id: attendee.id, event_id: @event.id).status %></p>
+    <% end %>
+<% else %>
+    <h2> No guests</h2>
+<% end %>
+
+<% if @event.creator_id == session[:user_id] %>
+<hr>
+    <div class = "event-details">
+        <ul>
+            <li><%= link_to "Edit", edit_event_url(@event) %></li>
+            <li><%= link_to "Delete", event_path(@event), method:"delete",
+                                                            data: { confirm: 'Are you sure?'} %></li>
+        </ul>
+    </div>
+<% end %>
+

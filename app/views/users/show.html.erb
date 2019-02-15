@@ -1,0 +1,36 @@
+<h1><%= @user.name %></h1>
+<hr>
+<h2> Hosted Events | <%= link_to "Create Event", newEvent_path %></h2>
+<% if @events.count > 0 %>
+    <% @events.each do |event| %>
+                <hr>
+                <h3><%= event.name %></h3>
+                <div class = "event-details">
+                    <p> at <%= event.location %></p>
+                    <p> in <%= event.date %></p>
+                    <ul>
+                        <li><%= link_to "Settings", event_path(event) %></li>
+                    </ul>
+                </div>
+    <% end %>
+    <hr>
+<% else %>
+    <p> No events </p>
+<% end %>
+<h2> Attending Events</h2>
+<% if @attended_events.count > 0 %>
+    <% @attended_events.each do |event| %>
+                <hr>
+                <h3><%= event.name %></h3>
+                <div class = "event-details">
+                    <p> at <%= event.location %></p>
+                    <p> in <%= event.date %></p>
+                    <ul>
+                        <li><%= link_to "Read More", event_path(event) %></li>
+                    </ul>
+                </div>
+    <% end %>
+    <hr>
+<% else %>
+    <p> No events </p>
+<% end %>

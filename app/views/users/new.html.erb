@@ -1,0 +1,42 @@
+
+
+<h1>Sign up</h1>
+<hr>
+
+<%= form_for @user do |f| %>
+
+    <div class = "form-group" >
+
+    <% if @user.errors.any? %>
+        <% @user.errors.full_messages.each do |message| %>
+            <div class = "alert alert-danger"> <%= message %> </div>
+        <% end %>
+    <% end %>
+
+    <p>
+    <%= f.label :name %>
+    <%= f.text_field :name, class:"form-control" %>
+    </p>
+
+    <p>
+    <%= f.label :email %>
+    <%= f.email_field :email, class:"form-control" %>
+    </p>
+
+    <p>
+    <%= f.label :password %>
+    <%= f.password_field :password, class:"form-control"  %>
+    </p>
+
+    <p>
+    <%= f.label :passwrod_confirmation, "Confirmation" %>
+    <%= f.password_field :password_confirmation, class:"form-control"  %>
+    </p>
+
+    <p>
+    <%= f.submit "Sign up", class:"btn btn-primary" %>
+    </p>
+
+    </div>
+
+<% end %>

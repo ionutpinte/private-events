@@ -1,0 +1,30 @@
+
+
+<h1>Log in</h1>
+<hr>
+
+<%= form_for :session do |f| %>
+
+    <div class = "form-group" >
+
+    <p>
+    <%= f.label :email %>
+    <%= f.email_field :email, class:"form-control" %>
+    </p>
+
+    <p>
+    <%= f.label :password %>
+    <%= f.password_field :password, class:"form-control"  %>
+    </p>
+
+    <p>
+    <%= f.submit "Log in", class:"btn btn-primary" %>
+    </p>
+
+    <hr>
+
+    <p>New user? <%= link_to "Sing up now!", signup_path %></p>
+
+    </div>
+
+<% end %>

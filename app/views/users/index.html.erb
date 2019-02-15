@@ -1,0 +1,7 @@
+<% if User.count > 0 %>
+    <% @users.each do |user| %>
+        <h2 class = "users" ><%= user.name %></h2>
+    <% end %>
+<% else %>
+    <h2> No users </h2>
+<% end %>
